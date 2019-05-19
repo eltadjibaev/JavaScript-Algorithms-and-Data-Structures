@@ -29,12 +29,19 @@ class SinglyLinkedList {
     pop() {
         if(!this.head) return undefined; 
         var current = this.head;
-        var oldTail = this.tail;
-        while(current.next !== oldTail) { current = current.next; }
-        this.tail = current;
-        current.next = null;
+        var newTail = current;
+        while(current.next) {
+            newTail = current; 
+            current = current.next; 
+        }
+        this.tail = newTail;
+        this.tail.next = null;
         this.length--;
-        return oldTail;
+        if(this.length === 0) {
+            this.head = null;
+            this.tail = null;
+        }
+        return current;
     }
 
     display() {
