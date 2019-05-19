@@ -66,6 +66,17 @@ class SinglyLinkedList {
         return this;
     }
 
+    get(index) {
+        if (index < 0 || index >= this.length) return null;
+        let cur = this.head;
+        let cnt = 0;
+        while(cnt !== index) { 
+            cur = cur.next;
+            cnt++;  
+        }
+        return cur;
+    }
+
     display() {
         var cur = this.head;
         while(cur) {
@@ -83,3 +94,4 @@ list.display();
 var test = list.pop();
 list.display();
 console.log(`test ==> ${test.val}`);
+console.log(list.get(0).val);
