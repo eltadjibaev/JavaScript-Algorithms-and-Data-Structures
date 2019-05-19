@@ -77,6 +77,13 @@ class SinglyLinkedList {
         return cur;
     }
 
+    set(val, index) {
+        let node = this.get(index);
+        if(!node) return false;
+        node.val = val;
+        return true;
+    }
+
     display() {
         var cur = this.head;
         while(cur) {
@@ -90,8 +97,5 @@ var list = new SinglyLinkedList();
 list.push(1);
 list.push(2);
 list.push(3);
+console.log(list.set(6, 1));
 list.display();
-var test = list.pop();
-list.display();
-console.log(`test ==> ${test.val}`);
-console.log(list.get(0).val);
