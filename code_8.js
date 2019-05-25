@@ -43,6 +43,21 @@
          return poppedNode;
      }
 
+     shift() {
+         if(!this.head) return undefined;
+         let shiftedNode = this.head;
+         if (this.length === 1) {
+             this.head = null;
+             this.tail = null;
+         } else {
+             this.head = shiftedNode.next;
+             this.head.prev = null;
+             shiftedNode.next = null;
+         }
+         this.length--;
+         return shiftedNode;
+     }
+
      display() {
          let node = this.head;
          let arr = [];
@@ -55,9 +70,10 @@
  }
 
  var list = new DoublyLinkedList();
- list.push(89);
  list.push(8);
- list.push(9);
+ list.push(18);
+ list.push(19);
+ list.push(29);
+ list.push(39);
  list.display();
- list.pop();
  list.display();
