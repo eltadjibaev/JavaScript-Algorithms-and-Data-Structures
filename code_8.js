@@ -89,7 +89,17 @@
             }
             found = node;
          } 
-         return found.val;
+         return found;
+     }
+
+     set(index, val) {
+         let node = this.get(index);
+         if(node) {
+             node.val = val;
+             return true;
+         } else {
+             return false;
+         }
      }
 
      display() {
@@ -110,4 +120,5 @@
  list.unshift(29);
  list.unshift(39);
  list.display();
- console.log(list.get(5));
+ list.set(5, 25);
+ list.display();
