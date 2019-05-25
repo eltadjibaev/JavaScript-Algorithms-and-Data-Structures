@@ -58,6 +58,20 @@
          return shiftedNode;
      }
 
+     unshift(val) {
+         let newNode = new Node(val);
+         if (this.length === 0) {
+             this.head = newNode;
+             this.tail = newNode;
+         } else {
+             this.head.prev = newNode;
+             newNode.next = this.head;
+             this.head = newNode;
+         }
+         this.length++;
+         return this;
+     }
+
      display() {
          let node = this.head;
          let arr = [];
@@ -70,10 +84,9 @@
  }
 
  var list = new DoublyLinkedList();
- list.push(8);
- list.push(18);
- list.push(19);
- list.push(29);
- list.push(39);
- list.display();
+ list.unshift(8);
+ list.unshift(18);
+ list.unshift(19);
+ list.unshift(29);
+ list.unshift(39);
  list.display();
