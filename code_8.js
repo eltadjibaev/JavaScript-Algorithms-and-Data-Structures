@@ -102,6 +102,34 @@
          }
      }
 
+     insert(index, val) {
+         if(index < 0 || index > this.length) return false;
+         if(index === 0) return this.unshift(val);
+         if(index === this.length) return this.push(val);
+         let newNode = new Node(val);
+         let prevNode = this.get(index - 1);
+         newNode.prev = prevNode;
+         newNode.next = prevNode.next;
+         prevNode.next.prev = newNode;
+         prevNode.next = newNode;
+         this.length++;
+         return true;
+     }
+
+     remove(index) {
+         if(index < 0 || index >= this.length) return undefined;
+         if(index === 0) return this.shift();
+         if(index === this.length - 1) return this.pop();
+         let node = this.get(index);
+         let prevNode = node.prev, afterNode = node.next;
+         prevNode.next = afterNode;
+         afterNode.prev = prevNode;
+         node.prev = null;
+         node.next = null;
+         this.length--;
+         return node;
+     }
+
      display() {
          let node = this.head;
          let arr = [];
@@ -120,5 +148,5 @@
  list.unshift(29);
  list.unshift(39);
  list.display();
- list.set(5, 25);
+ list.remove(-1);
  list.display();
