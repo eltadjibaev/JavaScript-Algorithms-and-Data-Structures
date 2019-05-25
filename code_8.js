@@ -72,6 +72,26 @@
          return this;
      }
 
+     get(index) {
+         if (index < 0 || index >= this.length) return null;
+         let middle = Math.floor(this.length / 2);
+         let found;
+         if (index <= middle) {
+             let node = this.head;
+             for (let i = 0; i < index; i++) {
+                 node = node.next;
+             }
+             found = node;
+         } else {
+            let node = this.tail;
+            for (let i = this.length - 1; i > index; i--) {
+                node = node.prev;
+            }
+            found = node;
+         } 
+         return found.val;
+     }
+
      display() {
          let node = this.head;
          let arr = [];
@@ -90,3 +110,4 @@
  list.unshift(29);
  list.unshift(39);
  list.display();
+ console.log(list.get(5));
