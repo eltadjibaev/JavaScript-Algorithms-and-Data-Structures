@@ -25,4 +25,16 @@ class Stack {
         }
         return ++this.length;
     }
+
+    pop() {
+        if(!this.first) return null;
+        let temp = this.first;
+        if(this.first === this.last) {
+            this.last = null;
+        }
+        this.first = temp.next;
+    
+        this.length--;
+        return temp.val;
+    }
 }
