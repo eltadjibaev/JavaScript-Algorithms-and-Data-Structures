@@ -1,4 +1,4 @@
-
+// STACK LIFO
 class Node {
     constructor(val) {
         this.val = val;
