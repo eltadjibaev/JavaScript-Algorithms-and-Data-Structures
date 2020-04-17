@@ -171,7 +171,7 @@ console.log(stringifyNumbers(obj));*/
 
 // #7
 
-function collectStrings(obj){
+/*function collectStrings(obj){
     let arr = [];
     for (const key in obj) {
         if (typeof obj[key] === 'string') {
@@ -199,4 +199,4 @@ const obj = {
     }
 }
 
-console.log(collectStrings(obj)); // ["foo", "bar", "baz"])
+console.log(collectStrings(obj)); // ["foo", "bar", "baz"])*/
