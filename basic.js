@@ -74,10 +74,34 @@ console.log(fib(35)); // 9227465*/
 
 // 6
 
-function reverse(str){
+/*function reverse(str){
     if(str === "") return "";
     else return reverse(str.substr(1)) + str.charAt(0);
 }
   
   console.log(reverse('awesome')); // 'emosewa'
-  console.log(reverse('rithmschool')); // 'loohcsmhtir'
+  console.log(reverse('rithmschool')); // 'loohcsmhtir'*/
+
+/////////////////////////////////////////////////////////////
+
+// 7
+
+// isPalindrome('awesome') // false
+// isPalindrome('foobar') // false
+// isPalindrome('tacocat') // true
+// isPalindrome('amanaplanacanalpanama') // true
+// isPalindrome('amanaplanacanalpandemonium') // false
+
+function isPalindrome(s){
+    if(s.length <= 1) return true;
+    let [first] = s;
+    let last = s[s.length - 1];
+    if(first === last) {
+        let str = s.substring(1, s.length-1)
+        return isPalindrome(str);
+    } else { return false; }
+}
+
+console.log(isPalindrome('tacocat'));
+
+  
