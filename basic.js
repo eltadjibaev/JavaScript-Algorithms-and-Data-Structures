@@ -61,11 +61,23 @@ console.log(recursiveRange(10)); // recursiveRange(10) // 55*/
 
 // 5
 
-function fib(val){
+/*function fib(val){
       if(val <= 2) return 1;
       return fib(val-1) + fib(val - 2);
 }
 console.log(fib(4)); // 3
 console.log(fib(10)); // 55
 console.log(fib(28)); // 317811
-console.log(fib(35)); // 9227465
+console.log(fib(35)); // 9227465*/
+
+///////////////////////////////////////////////////////
+
+// 6
+
+function reverse(str){
+    if(str === "") return "";
+    else return reverse(str.substr(1)) + str.charAt(0);
+}
+  
+  console.log(reverse('awesome')); // 'emosewa'
+  console.log(reverse('rithmschool')); // 'loohcsmhtir'
