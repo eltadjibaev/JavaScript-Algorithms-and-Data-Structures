@@ -92,7 +92,7 @@ console.log(fib(35)); // 9227465*/
 // isPalindrome('amanaplanacanalpanama') // true
 // isPalindrome('amanaplanacanalpandemonium') // false
 
-function isPalindrome(s){
+/*function isPalindrome(s){
     if(s.length <= 1) return true;
     let [first] = s;
     let last = s[s.length - 1];
@@ -102,6 +102,24 @@ function isPalindrome(s){
     } else { return false; }
 }
 
-console.log(isPalindrome('tacocat'));
+console.log(isPalindrome('tacocat'));*/
+
+///////////////////////////////////////////////////
+
+// 8
+
+// const isOdd = val => val % 2 !== 0;
+
+function someRecursive(arr){
+    if(arr.length === 0) return false;
+    else if(arr[0] % 2 !== 0) return true;
+    return someRecursive(arr.slice(1));
+}
+
+console.log(someRecursive([1,2,3,4])); // true
+console.log(someRecursive([4,6,8,9])); // true
+console.log(someRecursive([4,6,8])); // false
+console.log(someRecursive([4,6,8])); // false
+
 
   
