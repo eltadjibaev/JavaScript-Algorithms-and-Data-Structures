@@ -208,7 +208,7 @@ console.log(someRecursive([4,6,8])); // false */
   ////////////////////////////////////////////////////////////////////
 
 
-let obj = {
+/*let obj = {
     num: 1,
     test: [],
     data: {
@@ -246,5 +246,35 @@ console.log(stringifyNumbers(obj));
 }
 */
 
+//////////////////////////////////////////////////////////////////////////////
 
+const obj = {
+    stuff: "foo",
+    data: {
+        val: {
+            thing: {
+                info: "bar",
+                moreInfo: {
+                    evenMoreInfo: {
+                        weMadeIt: "baz"
+                    }
+                }
+            }
+        }
+    }
+}
+
+function collectStrings(obj){
+    var arr = [];
+    function inner(obj){
+        for(let val in obj) {
+            if(typeof obj[val] === 'string') arr.push(obj[val]);
+            else if(typeof obj[val] === 'object') inner(obj[val]);
+        }
+    }
+    inner(obj);
+    return arr;
+}
+
+console.log(collectStrings(obj)) // ["foo", "bar", "baz"])
   
