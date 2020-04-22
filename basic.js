@@ -156,7 +156,7 @@ console.log(someRecursive([4,6,8])); // false */
 
   ////////////////////////////////////////////////////////////////////////
 
-  function nestedEvenSum (obj) {
+  /*function nestedEvenSum (obj) {
     let sum = 0;
     function inner(obj){
         for(let val in obj){
@@ -190,7 +190,61 @@ console.log(someRecursive([4,6,8])); // false */
   };
   
   console.log(nestedEvenSum(obj1)); // 6
-  console.log(nestedEvenSum(obj2)); // 10
+  console.log(nestedEvenSum(obj2)); // 10 */
+
+  ///////////////////////////////////////////////////////////////
+
+  /*function capitalizedWords (arr) {
+    if(arr.length === 0) return [];
+    var newArr = [];
+    newArr = newArr.concat(capitalizedWords(arr.slice(1)));
+    newArr.unshift(arr[0].toUpperCase());
+    return newArr;
+  }
+  
+  let words = ['i', 'am', 'learning', 'recursion'];
+  console.log(capitalizedWords(words)); // ['I', 'AM', 'LEARNING', 'RECURSION']*/
+
+  ////////////////////////////////////////////////////////////////////
+
+
+let obj = {
+    num: 1,
+    test: [],
+    data: {
+        val: 4,
+        info: {
+            isRight: true,
+            random: 66
+        }
+    }
+}
+
+
+function stringifyNumbers(obj) {
+    function inner(obj) {
+        for(let i in obj) {
+            if(typeof obj[i] === 'number')  obj[i] = obj[i].toString();
+            else if(typeof obj[i] === 'object') inner(obj[i]);
+        }
+    }
+    inner(obj);
+    return obj;
+}
+
+console.log(stringifyNumbers(obj));
+/*{
+    num: "1",
+    test: [],
+    data: {
+        val: "4",
+        info: {
+            isRight: true,
+            random: "66"
+        }
+    }
+}
+*/
 
 
   
