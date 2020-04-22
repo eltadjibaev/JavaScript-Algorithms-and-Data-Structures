@@ -125,7 +125,7 @@ console.log(someRecursive([4,6,8])); // false */
 
 // 9
 
-function flatten(oldArr){
+/*function flatten(oldArr){
     var newArr = [];
     for (let i = 0; i < oldArr.length; i++) {
         if(Array.isArray(oldArr[i])) {
@@ -140,7 +140,23 @@ function flatten(oldArr){
   console.log(flatten([1, 2, 3, [4, 5] ])); // [1, 2, 3, 4, 5]
   console.log(flatten([1, [2, [3, 4], [[5]]]])); // [1, 2, 3, 4, 5]
   console.log(flatten([[1],[2],[3]])); // [1,2,3]
-  console.log(flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]])); // [1,2,3]
+  console.log(flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]])); // [1,2,3]*/
+
+  ///////////////////////////////////////////////////////////////////
+
+  /*function capitalizeFirst (arr) {
+    if(arr.length === 0) return [];
+    var newArr = [];
+    newArr = newArr.concat(capitalizeFirst(arr.slice(1)));
+    newArr.unshift(arr[0].charAt(0).toUpperCase() + arr[0].slice(1));
+    return newArr;
+  }
+  
+  console.log(capitalizeFirst(['car','taco','banana'])); // ['Car','Taco','Banana'] */
+
+  ////////////////////////////////////////////////////////////////////////
+
+  
 
 
   
