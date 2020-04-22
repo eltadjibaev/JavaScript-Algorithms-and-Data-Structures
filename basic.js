@@ -110,7 +110,7 @@ console.log(isPalindrome('tacocat'));*/
 
 // const isOdd = val => val % 2 !== 0;
 
-function someRecursive(arr){
+/*function someRecursive(arr){
     if(arr.length === 0) return false;
     else if(arr[0] % 2 !== 0) return true;
     return someRecursive(arr.slice(1));
@@ -119,7 +119,28 @@ function someRecursive(arr){
 console.log(someRecursive([1,2,3,4])); // true
 console.log(someRecursive([4,6,8,9])); // true
 console.log(someRecursive([4,6,8])); // false
-console.log(someRecursive([4,6,8])); // false
+console.log(someRecursive([4,6,8])); // false */
+
+//////////////////////////////////////////////////////////////
+
+// 9
+
+function flatten(oldArr){
+    var newArr = [];
+    for (let i = 0; i < oldArr.length; i++) {
+        if(Array.isArray(oldArr[i])) {
+            newArr = newArr.concat(flatten(oldArr[i]));
+        } else {
+            newArr.push(oldArr[i]);
+        }
+    }
+    return newArr;
+  }
+  
+  console.log(flatten([1, 2, 3, [4, 5] ])); // [1, 2, 3, 4, 5]
+  console.log(flatten([1, [2, [3, 4], [[5]]]])); // [1, 2, 3, 4, 5]
+  console.log(flatten([[1],[2],[3]])); // [1,2,3]
+  console.log(flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]])); // [1,2,3]
 
 
   
