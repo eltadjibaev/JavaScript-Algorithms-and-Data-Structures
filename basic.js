@@ -248,7 +248,7 @@ console.log(stringifyNumbers(obj));
 
 //////////////////////////////////////////////////////////////////////////////
 
-const obj = {
+/*const obj = {
     stuff: "foo",
     data: {
         val: {
@@ -276,5 +276,19 @@ function collectStrings(obj){
     return arr;
 }
 
-console.log(collectStrings(obj)) // ["foo", "bar", "baz"])
+console.log(collectStrings(obj)) // ["foo", "bar", "baz"])*/
+
+function binarySearch(arr, val){
+    let left = 0;
+  let right = arr.length - 1, middle;
+  while(left<right){
+      middle = Math.round((left+right)/2); console.log(middle);
+      if(arr[middle]===val) return middle;
+      else if(arr[middle] < val) left=middle+1;
+      else right = middle-1;
+  }
+  return -1;
+  }
+
+  console.log(binarySearch([5,6,10,13,14,18,30,34,35,37,40,44,64,79,84,86,95,96,98,99], 95));
   
