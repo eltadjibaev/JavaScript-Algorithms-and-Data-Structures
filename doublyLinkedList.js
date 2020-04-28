@@ -57,7 +57,20 @@ class doublyLinkedList {
              this.head = newNode;
          }
          this.length++;
-         return newNode;
+         return this;
+     }
+
+     get(index) {
+         if(index < 0 || index >= this.length) return null;
+         let currentNode;
+         if(index <= (this.length / 2)) {
+             currentNode = this.head;
+             for (let i = 0; i < index; i++) currentNode = currentNode.next;
+         } else {
+             currentNode = this.tail
+             for (let i = this.length-1; i > index; i--) currentNode = currentNode.prev;
+         }
+         return currentNode.val;
      }
  }
 
@@ -65,6 +78,5 @@ class doublyLinkedList {
  list.push(100);
  list.push(200);
  list.push(300);
- console.log(list);
  list.unshift(50);
- console.log(list);
+ console.log(list.get(3))
