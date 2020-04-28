@@ -11,7 +11,7 @@ class doublyLinkedList {
          this.head = this.tail = null;
          this.length = 0;
      }
-     
+
      push(val) {
         let newNode = new Node(val);
         if(!this.head) this.head = this.tail = newNode;
@@ -22,6 +22,7 @@ class doublyLinkedList {
         }
         this.length++;
      }
+     
      pop() {
         if(!this.head) return undefined;
         let poppedNode = this.tail; 
