@@ -70,7 +70,16 @@ class doublyLinkedList {
              currentNode = this.tail
              for (let i = this.length-1; i > index; i--) currentNode = currentNode.prev;
          }
-         return currentNode.val;
+         return currentNode;
+     }
+
+     set(val, index) {
+         let node = this.get(index);
+         if(node) {
+             node.val = val;
+             return true;
+         }
+         return false;
      }
  }
 
@@ -78,5 +87,5 @@ class doublyLinkedList {
  list.push(100);
  list.push(200);
  list.push(300);
- list.unshift(50);
- console.log(list.get(3))
+ console.log(list.set(400, 2));
+ console.log(list);
