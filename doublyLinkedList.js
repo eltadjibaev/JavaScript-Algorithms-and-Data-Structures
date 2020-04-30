@@ -21,6 +21,7 @@ class doublyLinkedList {
             this.tail = newNode;
         }
         this.length++;
+        return true;
      }
 
      pop() {
@@ -81,11 +82,35 @@ class doublyLinkedList {
          }
          return false;
      }
+
+     print() {
+         let current = this.head;
+         while(current){
+             console.log(current.val);
+             current = current.next;
+         }
+     }
+
+     insert(val, index) {
+         if(index < 0 || index > this.length) return false;
+         if(index === 0) return this.unshift(val);
+         if(index === this.length) return this.push(val);
+         let newNode = new Node(val);
+         let currentNode = this.get(index);
+         newNode.prev = currentNode.prev;
+         newNode.next = currentNode;
+         currentNode.prev.next = newNode;
+         currentNode.prev = newNode;
+         this.length++;
+         return true;
+     }
  }
 
  var list = new doublyLinkedList();
  list.push(100);
  list.push(200);
  list.push(300);
- console.log(list.set(400, 2));
- console.log(list);
+ console.log(list.insert(400, 2));
+ list.print();
+ console.log(list.insert(50, 4));
+ list.print();
