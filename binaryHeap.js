@@ -11,22 +11,35 @@ class MaxBinaryHeap {
 
     removing() {
         [this.values[0], this.values[this.values.length-1]] = [this.values[this.values.length-1], this.values[0]];
-        this.values.pop();
+        let max = this.values.pop();
         this.sinkDown();
+        return max;
     }
 
     sinkDown() {
-        let parentIndex = 0;
-        let leftIndex = 2 * parentIndex + 1;
-        let rightIndex = 2 * parentIndex + 2;
-        if(this.values[parentIndex] < this.values[leftIndex] || this.values[parentIndex] < this.values[rightIndex]) {
-            if(this.values[leftIndex] > this.values[rightIndex]) {
-                [this.values[leftIndex], this.values[parentIndex]] = [this.values[parentIndex], this.values[leftIndex]];
-                parentIndex = leftIndex; 
-            } else {
-                [this.values[rightIndex], this.values[parentIndex]] = [this.values[parentIndex], this.values[rightIndex]]; 
-                parentIndex = rightIndex;
-            }
+        let idx = 0;
+        while (this.values.length > (2 * idx + 1)) {
+            let leftIdx = 2 * idx + 1;
+            let rightIdx = 2 * idx + 2;
+            if(this.values[leftIdx] && this.values[idx] < this.values[leftIdx] || this.values[rightIdx] && this.values[idx] < this.values[rightIdx]) {
+                if(this.values[leftIdx] && this.values[rightIdx]) {
+                    if(this.values[leftIdx] > this.values[rightIdx]) {
+                        [this.values[leftIdx], this.values[idx]] = [this.values[idx], this.values[leftIdx]];
+                        idx = leftIdx; 
+                    } else {
+                        [this.values[rightIdx], this.values[idx]] = [this.values[idx], this.values[rightIdx]]; 
+                        idx = rightIdx;
+                    }
+                } else {
+                    if(this.values[leftIdx]) {
+                        [this.values[leftIdx], this.values[idx]] = [this.values[idx], this.values[leftIdx]];
+                        idx = leftIdx; 
+                    } else {
+                        [this.values[rightIdx], this.values[idx]] = [this.values[idx], this.values[rightIdx]]; 
+                        idx = rightIdx;
+                    }
+                } 
+            } else break;
         }
     }
 
@@ -43,11 +56,15 @@ class MaxBinaryHeap {
 }
 
 let MaxHeap = new MaxBinaryHeap();
-MaxHeap.insert(12);
-MaxHeap.insert(27);
-MaxHeap.insert(18);
-MaxHeap.insert(33);
-MaxHeap.insert(39);
 MaxHeap.insert(41);
+MaxHeap.insert(39);
+MaxHeap.insert(33);
+MaxHeap.insert(18);
+MaxHeap.insert(27);
+MaxHeap.insert(12);
 MaxHeap.insert(55);
+console.log(MaxHeap.values);
+console.log(MaxHeap.removing());
+console.log(MaxHeap.values);
+console.log(MaxHeap.removing());
 console.log(MaxHeap.values);
