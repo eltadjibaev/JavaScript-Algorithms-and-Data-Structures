@@ -66,5 +66,3 @@ MaxHeap.insert(55);
 console.log(MaxHeap.values);
 console.log(MaxHeap.removing());
 console.log(MaxHeap.values);
-console.log(MaxHeap.removing());
-console.log(MaxHeap.values);
