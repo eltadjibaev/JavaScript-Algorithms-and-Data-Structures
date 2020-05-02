@@ -25,10 +25,38 @@ class HashTable {
         let hashNumber = this._hash(key);
         if(this.keyMap[hashNumber]) {
             for (let i = 0; i < this.keyMap[hashNumber].length; i++) {
-                if(this.keyMap[hashNumber][i][0] === key) return this.keyMap[hashNumber][i];
+                if(this.keyMap[hashNumber][i][0] === key) return this.keyMap[hashNumber][i][1];
             }
         }
         return undefined;
+    }
+
+    values() {
+        let valuesArr = [];
+        for (let i = 0; i < this.keyMap.length; i++) {
+            if (this.keyMap[i]) {
+                for (const val of this.keyMap[i]) {
+                    if (!valuesArr.includes(val[1])) {
+                        valuesArr.push(val[1]);
+                    }
+                }
+            }
+        }
+        return valuesArr;
+    }
+
+    keys() {
+        let keysArr = [];
+        for (let i = 0; i < this.keyMap.length; i++) {
+            if (this.keyMap[i]) {
+                for (const val of this.keyMap[i]) {
+                    if (!keysArr.includes(val[0])) {
+                        keysArr.push(val[0]);
+                    }
+                }
+            }
+        }
+        return keysArr;
     }
 } 
 
@@ -37,6 +65,6 @@ ht.set('maroon','#80000');
 ht.set('yellow','#FFFF00');
 ht.set('olive','#808000');
 ht.set('salmon','#FA8072');
+ht.set('salmon','#FA8072');
 ht.set('plum','DDA0DD');
-console.log(ht.get('olive'));
-//console.log(ht.keyMap);
+console.log(ht.keys());
