@@ -68,3 +68,7 @@ ht.set('salmon','#FA8072');
 ht.set('salmon','#FA8072');
 ht.set('plum','DDA0DD');
 console.log(ht.keys());
+
+ht.keys().forEach(key => {
+    console.log(ht.get(key));
+});
