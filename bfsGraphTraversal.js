@@ -27,27 +27,6 @@ class Graph{
         delete this.adjacencyList[v];
     }
 
-    depthFirstIterative(start) {
-        const stack = [start];
-        const result = [];
-        const visited = {};
-        let currentVertex;
-
-        visited[start] = true;
-        while (stack.length) {
-            currentVertex = stack.pop();
-            result.push(currentVertex);
-
-            this.adjacencyList[currentVertex].forEach(neighbor => {
-                if(!visited[neighbor]) {
-                    stack.push(neighbor); 
-                    visited[neighbor] = true;
-                }
-            });
-        }
-        return result;
-    }
-
     breadthFirst(start) {
         const queue = [start];
         const result = [];
