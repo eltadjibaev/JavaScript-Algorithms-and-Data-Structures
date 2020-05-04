@@ -51,9 +51,13 @@ class WeightedGraph {
         }
         // as long as there is something to visit
         while (nodes.values.length) {
-            smallest = nodes.dequeue();
+            smallest = nodes.dequeue().val;
             if(smallest === finish) {
-
+                while (previous[smallest]) {
+                    path.push(smallest);
+                    smallest = previous[smallest];
+                }
+                break;
             }
             if(smallest || distances[smallest] !== Infinity) {
                 for (const neighbor in this.adjacencyList[smallest]) {
@@ -63,7 +67,7 @@ class WeightedGraph {
                     let candidate = distances[smallest] + nextNode.weight;
                     if(candidate < distances[nextNode.node]) {
                         // updating new smallest distance to neighbor
-                        distance[nextNode.node] = candidate;
+                        distances[nextNode.node] = candidate;
                         // updating previous - How we got to neighbor
                         previous[nextNode.node] = smallest;
                         // enqueue in priority queue with new priority
@@ -72,6 +76,7 @@ class WeightedGraph {
                 }
             }
         }
+        return path.concat(smallest).reverse();
     }
 } 
 
@@ -91,3 +96,5 @@ graph.addEdge('C', 'F', 4);
 graph.addEdge('D', 'E', 3);
 graph.addEdge('D', 'F', 1);
 graph.addEdge('E', 'F', 1);
+
+console.log(graph.Dijkstra('A', 'E'));
