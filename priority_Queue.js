@@ -65,7 +65,9 @@ class PriorityQueue {
 }
 
 let hospital = new PriorityQueue();
+
 hospital.enqueue('common cold', 1);
 hospital.enqueue('gunshot wound', 5);
 hospital.enqueue('high fever', 2);
+
 console.log(hospital.dequeue());
