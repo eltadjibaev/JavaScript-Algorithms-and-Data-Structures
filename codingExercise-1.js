@@ -1,47 +1,46 @@
-class Node{
-    constructor(val){
-        this.val = val
-        this.next = null;      
-    }
-}
 
-class SinglyLinkedList{
-    constructor(){
-        this.head = null;
-        this.tail = null;
-        this.length = 0;     
-    }
-    push(val){
-        var newNode = new Node(val);
-        if (!this.head) {
-            this.head = newNode;
-            this.tail = this.head;
-        } else {
-            this.tail.next = newNode;
-            this.tail = newNode;
+function bubbleSort(arr, comparator){
+    if (typeof comparator !== 'function') {
+        for (let i = 1; i < arr.length; i++) {
+            let val = arr[i];
+            let index = i - 1;
+            while(index >= 0 && val < arr[index]) {
+                arr[index+1] = arr[index];
+                index--;
+            }
+            arr[index+1] = val;  
         }
-            this.length++;
-        
-        return this;
+    } else {
+        for (let i = 1; i < arr.length; i++) {
+            let val = arr[i];
+            let index = i - 1;
+            let test = comparator(arr[index], val);
+            if(test <= 0) test = 0;
+            while(index >= 0 && test) {
+                arr[index+1] = arr[index];
+                index--;
+                if(index >= 0) test = comparator(arr[index], val);
+                if(test <= 0) test = 0;
+            }
+            arr[index+1] = val;  
+        }
     }
-    get(index) {
-        if(index < 0 || index >= this.length) return null;
-        let temp = this.head;
-        for (let i = 0; i < index; i++) temp = temp.next;
-        return temp;
-    }
-    remove(index){
-        if(index < 0 || index >= this.length) return undefined;
-        if(index === 0) return this.shift();
-        if(index === this.length-1) return this.pop();
-        let prev = this.get(index-1);
-        let oldNode = prev.next; 
-        prev.next = oldNode.next;
-        this.length--;
-        return oldNode.val;
-    }
+    return arr;
 }
 
-var list = new SinglyLinkedList();
-list.push(5).push(10).push(15).push(20);
-console.log
+function strComp(a, b) {
+    return (a<b?-1:(a>b?1:0));
+}
+
+function oldestToYoungest(a, b) {
+    return b.age - a.age;
+}
+
+console.log(bubbleSort([4,20,12,10,7,9]));
+
+var kities = ['LilBub', 'Garfield', 'Heathcliff', 'Blue', 'Grumpy'];
+console.log(bubbleSort(kities, strComp));
+
+var moarKittyData = [{name: 'Lilbub', age: 7},{name: 'Blue', age: 1},{name: 'Heathcliff', age: 45},
+{name: 'Garfie', age: 40},{name: 'Grumpy', age: 6}];
+console.log(bubbleSort(moarKittyData, oldestToYoungest));
