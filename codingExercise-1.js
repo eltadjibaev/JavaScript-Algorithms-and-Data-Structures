@@ -66,17 +66,29 @@ function merge(arr1, arr2, fun) {
     return result;
 }
 
-var arr1 = [1,3,4,5];
-var arr2 = [2,4,6,8];
-console.log(merge(arr1, arr2));
-
-var arr1 = [-2,-1,0,4,5,6];
-var arr2 = [-3,-2,-1,2,3,5,7,8];
-console.log(merge(arr1, arr2));
-
-var arr1 = ['Bob', 'Ethel', 'Christine'];
-var arr2 = ['M', 'Colt', 'Allison', 'SuperLongNameOMG'];
-function compare(str1, str2) {
-    return str1.length - str2.length;
+function mergeSort(arr, fun) {
+    if(arr.length <= 1) return arr;
+    let mid = Math.floor(arr.length / 2);
+    let left = mergeSort(arr.slice(0,mid));
+    let right = mergeSort(arr.slice(mid));
+    return merge(left, right, fun);
 }
-console.log(merge(arr1, arr2, compare));
+
+function oldestToYoungest(a, b) {
+    return b.age - a.age;
+}
+
+function strComp(a, b) {
+    return (a<b?-1:(a>b?1:0));
+}
+
+var arr = [4,20,12,10,7,9];
+console.log(mergeSort(arr));
+
+var kities = ['LilBub', 'Garfield', 'Heathcliff', 'Blue', 'Grumpy'];
+console.log(mergeSort(kities, strComp));
+
+var moarKittyData = [{name: 'Lilbub', age: 7},{name: 'Blue', age: 1},{name: 'Heathcliff', age: 45},
+{name: 'Garfie', age: 40},{name: 'Grumpy', age: 6}];
+console.log(mergeSort(moarKittyData, oldestToYoungest));
+
