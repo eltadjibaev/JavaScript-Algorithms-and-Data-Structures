@@ -1,5 +1,5 @@
 
-function bubbleSort(arr, comparator){
+/*function bubbleSort(arr, comparator){
     if (typeof comparator !== 'function') {
         for (let i = 1; i < arr.length; i++) {
             let val = arr[i];
@@ -43,4 +43,40 @@ console.log(bubbleSort(kities, strComp));
 
 var moarKittyData = [{name: 'Lilbub', age: 7},{name: 'Blue', age: 1},{name: 'Heathcliff', age: 45},
 {name: 'Garfie', age: 40},{name: 'Grumpy', age: 6}];
-console.log(bubbleSort(moarKittyData, oldestToYoungest));
+console.log(bubbleSort(moarKittyData, oldestToYoungest));*/
+
+function merge(arr1, arr2, fun) {
+    let result = [], test;
+    let i = 0, j = 0;
+    if (typeof fun !== 'function') {
+        while (arr1.length > i && arr2.length > j) {
+            if(arr1[i] > arr2[j]) result.push(arr2[j++]);
+            else result.push(arr1[i++]);
+        }
+    } else {
+        while (arr1.length > i && arr2.length > j) {
+            test = fun(arr1[i], arr2[j]);
+            if(test <= 0) test = 0;
+            if(test) result.push(arr2[j++]);
+            else result.push(arr1[i++]);
+        }
+    }
+    while (arr1.length > i) result.push(arr1[i++]);
+    while (arr2.length > j) result.push(arr2[j++]);
+    return result;
+}
+
+var arr1 = [1,3,4,5];
+var arr2 = [2,4,6,8];
+console.log(merge(arr1, arr2));
+
+var arr1 = [-2,-1,0,4,5,6];
+var arr2 = [-3,-2,-1,2,3,5,7,8];
+console.log(merge(arr1, arr2));
+
+var arr1 = ['Bob', 'Ethel', 'Christine'];
+var arr2 = ['M', 'Colt', 'Allison', 'SuperLongNameOMG'];
+function compare(str1, str2) {
+    return str1.length - str2.length;
+}
+console.log(merge(arr1, arr2, compare));
