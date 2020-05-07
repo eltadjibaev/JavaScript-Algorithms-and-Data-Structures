@@ -51,13 +51,30 @@ class BinarySearchTree {
         }
         return false;
     }
+
+    findSecondLargest() {
+        let secondMax;
+        let pre = this.root;
+        let cur = this.root;
+        while(cur.right !== null){
+            pre = cur;
+            cur = cur.right;
+        }
+        if(cur.left !== null) {
+            cur = cur.left;
+            while (cur.right !== null) cur = cur.right;
+            secondMax = cur;
+        } else {
+            if(cur === this.root && pre === this.root) {}
+            else secondMax = pre;
+        }
+        return secondMax;
+    }
 }
 
 var bst = new BinarySearchTree();
-bst.insert(10);
-bst.insert(5);
 bst.insert(15);
-bst.insert(13);
-bst.insert(9);
-bst.insert(11);
-console.log(bst.find(11));
+bst.insert(20);
+bst.insert(10);
+bst.insert(12);
+console.log(bst.findSecondLargest());
