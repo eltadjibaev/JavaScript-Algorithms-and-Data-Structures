@@ -43,7 +43,7 @@ console.log(bubbleSort(kities, strComp));
 
 var moarKittyData = [{name: 'Lilbub', age: 7},{name: 'Blue', age: 1},{name: 'Heathcliff', age: 45},
 {name: 'Garfie', age: 40},{name: 'Grumpy', age: 6}];
-console.log(bubbleSort(moarKittyData, oldestToYoungest));*/
+console.log(bubbleSort(moarKittyData, oldestToYoungest));
 
 function merge(arr1, arr2, fun) {
     let result = [], test;
@@ -90,5 +90,52 @@ console.log(mergeSort(kities, strComp));
 
 var moarKittyData = [{name: 'Lilbub', age: 7},{name: 'Blue', age: 1},{name: 'Heathcliff', age: 45},
 {name: 'Garfie', age: 40},{name: 'Grumpy', age: 6}];
-console.log(mergeSort(moarKittyData, oldestToYoungest));
+console.log(mergeSort(moarKittyData, oldestToYoungest)); */
 
+function pivot(arr, fun, start=0, end=arr.length-1) {
+    let p = arr[start];
+    let swapIndex = start;
+    if (typeof fun !== 'function') {
+        for (let i = start + 1; i <= end; i++) {
+            if(p > arr[i]) {
+                swapIndex++;
+                [arr[swapIndex], arr[i]] = [arr[i], arr[swapIndex]];
+            }
+        }
+    } else {
+        let test;
+        for (let i = start + 1; i <= end; i++) {
+            test = fun(p, arr[i]);
+            if(test <= 0) test = 0;
+            if(test) {
+                swapIndex++;
+                [arr[swapIndex], arr[i]] = [arr[i], arr[swapIndex]];
+            }
+        }
+    }
+    [arr[swapIndex], arr[start]] = [arr[start], arr[swapIndex]];
+    return swapIndex;
+}
+
+function quickSort(arr, fun, left = 0, right = arr.length - 1) {
+    if(left < right) {
+        let pivotInd = pivot(arr, fun, left, right);
+        quickSort(arr, left, pivotInd-1);
+        quickSort(arr, pivotInd+1, right);
+    }
+    return arr;
+}
+
+function strComp(a, b) {
+    return (a<b?-1:(a>b?1:0));
+}
+
+function oldestToYoungest(a, b) {
+    return b.age - a.age;
+}
+
+var arr = [8,4,2,5,0,10,11,12];
+console.log(quickSort(arr));
+
+var kities = ['LilBub', 'Garfield', 'Heathcliff', 'Blue', 'Grumpy'];
+console.log(quickSort(kities, strComp));
