@@ -90,7 +90,7 @@ console.log(mergeSort(kities, strComp));
 
 var moarKittyData = [{name: 'Lilbub', age: 7},{name: 'Blue', age: 1},{name: 'Heathcliff', age: 45},
 {name: 'Garfie', age: 40},{name: 'Grumpy', age: 6}];
-console.log(mergeSort(moarKittyData, oldestToYoungest)); */
+console.log(mergeSort(moarKittyData, oldestToYoungest)); 
 
 function pivot(arr, fun, start=0, end=arr.length-1) {
     let p = arr[start];
@@ -138,4 +138,64 @@ var arr = [8,4,2,5,0,10,11,12];
 console.log(quickSort(arr));
 
 var kities = ['LilBub', 'Garfield', 'Heathcliff', 'Blue', 'Grumpy'];
-console.log(quickSort(kities, strComp));
+console.log(quickSort(kities, strComp)); */
+
+class Node {
+    constructor(value) {
+        this.value = value;
+        this.next = null;
+    }
+}
+
+class Queue {
+    constructor() {
+        this.first = this.last = null;
+        this.size = 0;
+    }
+
+    enqueue(value) {
+        let newNode = new Node(value);
+        if(!this.first) this.first = this.last = newNode;
+        else {
+            newNode.next = this.first;
+            this.first = newNode;
+        }
+        return ++this.size;
+    }
+
+    dequeue() {
+        if(!this.first) return null;
+        let temp = this.first;
+        if(this.first === this.last) this.first = this.last = null;
+        else this.first = this.first.next;
+        this.size--;
+        return temp.value;
+    }
+}
+
+class Stack {
+    constructor() {
+        this.queue = new Queue();
+    }
+
+    push(value) {
+        this.queue.enqueue(value);
+        //console.log(this.queue);
+        return this;
+    }
+
+    pop() {
+        let old = this.queue.dequeue()
+        return old;
+    }
+}
+
+// QUEUE AND NODE HAVE BEEN IMPLEMENTED FOR YOU
+
+
+var stack = new Stack();
+stack.push(10).push(20).push(30);
+console.log(stack.pop());
+console.log(stack.pop());
+console.log(stack.pop());
+console.log(stack.pop());
