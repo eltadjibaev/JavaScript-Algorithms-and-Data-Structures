@@ -143,59 +143,96 @@ console.log(quickSort(kities, strComp)); */
 class Node {
     constructor(value) {
         this.value = value;
-        this.next = null;
+        this.left = null;
+        this.right = null;
     }
 }
 
-class Queue {
+class BinarySearchTree {
     constructor() {
-        this.first = this.last = null;
-        this.size = 0;
+        this.root = null;
     }
 
-    enqueue(value) {
+    insert(value) {
         let newNode = new Node(value);
-        if(!this.first) this.first = this.last = newNode;
-        else {
-            newNode.next = this.first;
-            this.first = newNode;
+        if(!this.root) { 
+            this.root = newNode; 
+            return true;
         }
-        return ++this.size;
+        let current = this.root;
+        while(true) {
+            if(value === current.value) return undefined;
+            if(value < current.value) { 
+                if (!current.left) {
+                    current.left = newNode; return this;
+                } 
+                current = current.left; 
+            }
+            else if(value > current.value){
+                if (!current.right) {
+                    current.right = newNode; return this;
+                } 
+                current = current.right;
+            }
+        }
     }
 
-    dequeue() {
-        if(!this.first) return null;
-        let temp = this.first;
-        if(this.first === this.last) this.first = this.last = null;
-        else this.first = this.first.next;
-        this.size--;
-        return temp.value;
+    find(value) {
+        let current = this.root;
+        if(!current) return false;
+        if(current.value === value) return this;
+        while(current) {
+            if(current.value > value) {
+                if(current.left && current.left.value === value) return current.left;
+                current = current.left;
+            } else if(current.value < value) {
+                if(current.right && current.right.value === value) return current.right;
+                current = current.right;
+            }
+        }
+        return false;
+    }
+
+    DFSPreOrder() {
+        let data = [];
+        function traverse(node) {
+            data.push(node.value);
+            if(node.left) traverse(node.left);
+            if(node.right) traverse(node.right);
+        }
+        traverse(this.root);
+        return data;
+    }
+
+    DFSPostOrder() {
+        let data = [];
+        function traverse(node) {
+            if(node.left) traverse(node.left);
+            if(node.right) traverse(node.right);
+            data.push(node.value);
+        }
+        traverse(this.root);
+        return data;
+    }
+
+    DFSInOrder() {
+        let data = [];
+        function traverse(node) {
+            if(node.left) traverse(node.left);
+            data.push(node.value);
+            if(node.right) traverse(node.right);
+        }
+        traverse(this.root);
+        return data;
     }
 }
 
-class Stack {
-    constructor() {
-        this.queue = new Queue();
-    }
-
-    push(value) {
-        this.queue.enqueue(value);
-        //console.log(this.queue);
-        return this;
-    }
-
-    pop() {
-        let old = this.queue.dequeue()
-        return old;
-    }
-}
-
-// QUEUE AND NODE HAVE BEEN IMPLEMENTED FOR YOU
-
-
-var stack = new Stack();
-stack.push(10).push(20).push(30);
-console.log(stack.pop());
-console.log(stack.pop());
-console.log(stack.pop());
-console.log(stack.pop());
+var tree = new BinarySearchTree();
+tree.insert(15);
+tree.insert(20);
+tree.insert(10);
+tree.insert(12);
+tree.insert(1);
+tree.insert(5);
+tree.insert(50);
+console.log(tree.DFSPostOrder());
