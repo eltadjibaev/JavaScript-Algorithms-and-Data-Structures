@@ -117,9 +117,11 @@ function name(nums) {
   for (let i = 0; i < nums.length; i++) {
       if(obj[nums[i]]) obj[nums[i]]++;
       else obj[nums[i]] = 1;
+      if(obj[nums[i]] > 1) res.push(nums[i]);
   } 
-  console.log(obj); 
+  
+  return res; 
 }
 
-name([4,3,2,7,8,2,3,1]);
-//console.log(name('aabbcc', 'bcabcaddff'));
+//name([4,3,2,7,8,2,3,1]);
+console.log(name([4,3,2,7,8,2,3,1]));
