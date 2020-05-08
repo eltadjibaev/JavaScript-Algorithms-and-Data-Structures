@@ -108,65 +108,73 @@ bst.remove(85);
 console.log(bst.root.right.right.value);
 console.log(bst.root.right.right.right.left.left.value);*/
 
-class Node {
-    constructor(value) {
-        this.value = value;
-        this.left = null;
-        this.right = null;
-    }
-}
 
-class BinarySearchTree {
+
+class MaxBinaryHeap {
     constructor() {
-        this.root = null;
+        this.values = [];
     }
 
     insert(value) {
-        let newNode = new Node(value);
-        if(!this.root) { 
-            this.root = newNode; 
-            return true;
-        }
-        let current = this.root;
-        while(true) {
-            if(value === current.value) return undefined;
-            if(value < current.value) { 
-                if (!current.left) {
-                    current.left = newNode; return this;
+        this.values.push(value);
+        this.bubbleUp();
+    }
+
+    removing() {
+        [this.values[0], this.values[this.values.length-1]] = [this.values[this.values.length-1], this.values[0]];
+        let max = this.values.pop();
+        this.sinkDown();
+        return max;
+    }
+
+    sinkDown() {
+        let idx = 0;
+        while (this.values.length > (2 * idx + 1)) {
+            let leftIdx = 2 * idx + 1;
+            let rightIdx = 2 * idx + 2;
+            if(this.values[leftIdx] && this.values[idx] < this.values[leftIdx] || this.values[rightIdx] && this.values[idx] < this.values[rightIdx]) {
+                if(this.values[leftIdx] && this.values[rightIdx]) {
+                    if(this.values[leftIdx] > this.values[rightIdx]) {
+                        [this.values[leftIdx], this.values[idx]] = [this.values[idx], this.values[leftIdx]];
+                        idx = leftIdx; 
+                    } else {
+                        [this.values[rightIdx], this.values[idx]] = [this.values[idx], this.values[rightIdx]]; 
+                        idx = rightIdx;
+                    }
+                } else {
+                    if(this.values[leftIdx]) {
+                        [this.values[leftIdx], this.values[idx]] = [this.values[idx], this.values[leftIdx]];
+                        idx = leftIdx; 
+                    } else {
+                        [this.values[rightIdx], this.values[idx]] = [this.values[idx], this.values[rightIdx]]; 
+                        idx = rightIdx;
+                    }
                 } 
-                current = current.left; 
-            }
-            else if(value > current.value){
-                if (!current.right) {
-                    current.right = newNode; return this;
-                } 
-                current = current.right;
-            }
+            } else break;
         }
     }
 
-    findSecondLargest() {
-        let max = this.root, second = this.root;
-        let current = this.root;
-        if(!current) return false;
-        while(current) {
-            if(current.value > max) {
-                if(current.left && current.left.value === value) return current.left;
-                current = current.left;
-            } else if(current.value < value) {
-                if(current.right && current.right.value === value) return current.right;
-                current = current.right;
-            }
+    bubbleUp() {
+        let index = this.values.length - 1;
+        const element = this.values[index];
+        while(index > 0) {
+            let parentIndex = Math.floor((index-1) / 2);
+            if(element <= this.values[parentIndex]) break;
+            [this.values[parentIndex], this.values[index]] = [this.values[index], this.values[parentIndex]];
+            index = parentIndex; 
         }
-        return false;
     }
 }
 
-var bst = new BinarySearchTree();
-bst.insert(10);
-bst.insert(5);
-bst.insert(15);
-bst.insert(13);
-bst.insert(9);
-bst.insert(11);
-console.log(bst.find(11));
+let MaxHeap = new MaxBinaryHeap();
+MaxHeap.insert(1);
+MaxHeap.insert(2);
+MaxHeap.insert(3);
+MaxHeap.insert(4);
+MaxHeap.insert(5);
+MaxHeap.insert(6);
+console.log(MaxHeap.values);
+console.log(MaxHeap.removing());
+console.log(MaxHeap.values);
+
+
