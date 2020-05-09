@@ -126,7 +126,7 @@ console.log(bst.root.right.right.right.left.left.value);*/
 //name([4,3,2,7,8,2,3,1]);
 console.log(name([4,3,2,7,8,2,3,1]));*/
 
-let Node = function() {
+/*let Node = function() {
     this.keys = new Map();
     this.end = false;
     this.setEnd = function() {
@@ -195,4 +195,4 @@ trie.add('do');
 trie.add('dorm');
 trie.add('send');
 trie.add('sense');*/
-//console.log(trie.print());
+//console.log(trie.print()); */
