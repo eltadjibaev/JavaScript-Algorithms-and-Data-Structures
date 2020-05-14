@@ -3,6 +3,7 @@ class Trie {
         this.characters = {};
         this.isWord = false;
     }
+
     addWord(word, index = 0) {
         if (index === word.length) {
             this.isWord = true;
@@ -29,6 +30,7 @@ class Trie {
             return this.characters[char];
         }
     }
+
     getWords(words = [], currentWord = "") {
         // This function will return all the words which are
         // contained in this Trie.
@@ -44,6 +46,7 @@ class Trie {
         }
         return words;
     }
+
     autoComplete(prefix) {
         // This function will return all completions
         // for a given prefix.
@@ -55,6 +58,7 @@ class Trie {
             return [];
         }
     }
+    
     removeWord(word) {
         
     }
